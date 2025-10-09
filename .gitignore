@@ -1,0 +1,6 @@
+.env
+
+.influxdb3/core/data/*
+.influxdb3/core/plugins/*
+
+.setup_env.sh
