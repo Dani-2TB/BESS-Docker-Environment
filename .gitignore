@@ -1,6 +1,11 @@
 .env
 
-.influxdb3/core/data/*
-.influxdb3/core/plugins/*
+.influxdb3/data/*
+.influxdb3/plugins/*
 
-.setup_env.sh
+influxdb3-explorer/db
+influxdb3-explorer/ssl
+
+reset_env.sh
+setup_raspi_env.sh
+
