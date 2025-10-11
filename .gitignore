@@ -5,6 +5,7 @@
 
 influxdb3-explorer/db
 influxdb3-explorer/ssl
+influxdb3-explorer/config/config.json
 
 reset_env.sh
 setup_raspi_env.sh
