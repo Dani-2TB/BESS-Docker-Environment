@@ -9,8 +9,9 @@ fi
 mkdir -p .influxdb3/data .influxdb3/plugins
 chown -R 1500:1500 .influxdb3
 
-[ ! -d influxdb3-explorer/db ] && mkdir influxdb3-explorer/db
-[ ! -d influxdb3-explorer/ssl ] && mkdir influxdb3-explorer/ssl
+[ ! -d influxdb3-explorer] && mkdir -d influxdb3-explorer/config
+[ ! -d influxdb3-explorer/db ] && mkdir -p influxdb3-explorer/db
+[ ! -d influxdb3-explorer/ssl ] && mkdir -p influxdb3-explorer/ssl
 
 # Setup influxdb3-explorer session key
 touch .env
