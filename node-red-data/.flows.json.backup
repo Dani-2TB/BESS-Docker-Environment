@@ -8,6 +8,37 @@
         "env": []
     },
     {
+        "id": "7ddade09bd1f5f58",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "4d767754efb0e8b5",
         "type": "inject",
         "z": "4574a4f87d40f0fa",
@@ -66,6 +97,45 @@
         "libs": [],
         "x": 500,
         "y": 180,
+        "wires": [
+            [
+                "ae77e873df0da070"
+            ]
+        ]
+    },
+    {
+        "id": "ae77e873df0da070",
+        "type": "mqtt out",
+        "z": "4574a4f87d40f0fa",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7ddade09bd1f5f58",
+        "x": 710,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a8dee109425defb7",
+        "type": "mqtt in",
+        "z": "4574a4f87d40f0fa",
+        "name": "",
+        "topic": "bess/+/status",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "7ddade09bd1f5f58",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 320,
         "wires": [
             [
                 "24b74142277ac0e3"
