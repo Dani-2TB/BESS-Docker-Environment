@@ -66,6 +66,13 @@ services:
       - .env
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-
+  
+  nodered:
+    container_name: nodered
+    image: nodered/node-red:latest
+    ports:
+     - "1880:1880"
+    volumes:
+      - ./node-red-data:/data
 volumes:
   grafana_storage: {}
