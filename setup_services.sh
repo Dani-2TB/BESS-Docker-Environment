@@ -18,7 +18,7 @@ touch .env
 echo "SESSION_SECRET_KEY=$(openssl rand -hex 32)" >> .env
 
 # Start docker and setup services
-docker compose up -d
+docker compose up -d influxdb3-core
 
 sleep 2 # Sleep for a bit to let the container initialize
 
@@ -48,7 +48,7 @@ cat > influxdb3-explorer/config/config.json <<EOF
 }
 EOF
 
-docker compose restart influxdb3-explorer
+docker compose up -d 
 
 echo "Services started"
 

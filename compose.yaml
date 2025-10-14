@@ -74,5 +74,6 @@ services:
      - "1880:1880"
     volumes:
       - ./node-red-data:/data
+      
 volumes:
   grafana_storage: {}
