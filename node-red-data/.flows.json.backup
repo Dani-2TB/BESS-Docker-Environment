@@ -126,7 +126,7 @@
         "type": "mqtt in",
         "z": "4574a4f87d40f0fa",
         "name": "",
-        "topic": "bess/+/status",
+        "topic": "battery/+/status",
         "qos": "2",
         "datatype": "auto-detect",
         "broker": "7ddade09bd1f5f58",
@@ -134,7 +134,7 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 270,
+        "x": 280,
         "y": 320,
         "wires": [
             [

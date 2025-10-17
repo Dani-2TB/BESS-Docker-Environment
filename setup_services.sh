@@ -17,7 +17,7 @@ chown -R 1500:1500 .influxdb3
 touch .env
 echo "SESSION_SECRET_KEY=$(openssl rand -hex 32)" >> .env
 
-# Start docker and setup services
+# Start influxdb3-core
 docker compose up -d influxdb3-core
 
 sleep 2 # Sleep for a bit to let the container initialize
