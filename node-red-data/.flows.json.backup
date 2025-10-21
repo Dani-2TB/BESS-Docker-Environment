@@ -79,8 +79,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 540,
-        "y": 360,
+        "x": 460,
+        "y": 320,
         "wires": []
     },
     {
@@ -88,7 +88,7 @@
         "type": "function",
         "z": "4574a4f87d40f0fa",
         "name": "function 1",
-        "func": "// --- CONFIGURACIÓN ---\nconst timestamp = new Date().toISOString();\nconst groups = [1, 2];\n\nlet socValues = context.get(\"socValues\") || {};\n\nfor (const g of groups) {\n    if (socValues[g] === undefined) {\n        socValues[g] = Math.floor(Math.random() * (100 - 60) + 60); // fijo entre 60% y 100%\n    }\n}\ncontext.set(\"socValues\", socValues);\n\nfunction random(min, max, decimals = 2) {\n    return parseFloat((Math.random() * (max - min) + min).toFixed(decimals));\n}\n\nconst bess = {\n    id: 1,\n    timestamp,\n    ac_current_in: random(0, 100),\n    ac_current_out: random(0, 100),\n    operation_mode: Math.random() > 0.5 ? \"on_grid\" : \"off_grid\"\n};\n\n\nconst batteries = groups.map(group_id => ({\n    id: group_id,\n    group_id,\n    timestamp,\n    soc: socValues[group_id], // valor fijo\n    current: random(-50, 50),\n    voltage: random(350, 420)\n}));\n\n\nconst pcsUnits = groups.map(group_id => ({\n    id: group_id,\n    group_id,\n    timestamp,\n    dc_voltage: random(350, 420),\n    dc_current: random(-50, 50),\n    ac_voltage: random(220, 240),\n    ac_current: random(0, 100)\n}));\n\n\nconst msgs = [];\n\nmsgs.push({\n    topic: `bess/${bess.id}/status`,\n    payload: bess\n});\n\nfor (const b of batteries) {\n    msgs.push({\n        topic: `battery/${b.group_id}/status`,\n        payload: b\n    });\n}\n\nfor (const p of pcsUnits) {\n    msgs.push({\n        topic: `pcs/${p.group_id}/status`,\n        payload: p\n    });\n}\n\nreturn [msgs];\n",
+        "func": "// --- CONFIGURACIÓN ---\nconst timestamp = new Date().toISOString();\nconst groups = [1, 2];\n\nlet socValues = context.get(\"socValues\") || {};\n\nfor (const g of groups) {\n    if (socValues[g] === undefined) {\n        socValues[g] = Math.floor(Math.random() * (100 - 60) + 60); // fijo entre 60% y 100%\n    }\n}\ncontext.set(\"socValues\", socValues);\n\nfunction random(min, max, decimals = 2) {\n    return parseFloat((Math.random() * (max - min) + min).toFixed(decimals));\n}\n\nconst bess = {\n    id: 1,\n    timestamp,\n    ac_current_in: random(0, 100) * 1000,\n    ac_current_out: random(0, 150) * 1000,\n    operation_mode: Math.random() > 0.5 ? \"on_grid\" : \"off_grid\"\n};\n\n\nconst batteries = groups.map(group_id => ({\n    id: group_id,\n    group_id,\n    timestamp,\n    soc: socValues[group_id], // valor fijo\n    current: random(-50, 50) * 1000,\n    voltage: random(350, 420) * 1000\n}));\n\n\nconst pcsUnits = groups.map(group_id => ({\n    id: group_id,\n    group_id,\n    timestamp,\n    dc_voltage: random(350, 420) * 1000,\n    dc_current: random(-50, 50) * 1000,\n    ac_voltage: random(220, 240) * 1000,\n    ac_current: random(0, 100) * 1000\n}));\n\n\nconst msgs = [];\n\nmsgs.push({\n    topic: `bess/${bess.id}/status`,\n    payload: bess\n});\n\nfor (const b of batteries) {\n    msgs.push({\n        topic: `battery/${b.group_id}/status`,\n        payload: b\n    });\n}\n\nfor (const p of pcsUnits) {\n    msgs.push({\n        topic: `pcs/${p.group_id}/status`,\n        payload: p\n    });\n}\n\nreturn [msgs];\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
