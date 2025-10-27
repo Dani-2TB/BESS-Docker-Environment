@@ -7,7 +7,7 @@ This repository contains a docker compose enviroment, configuration files and sc
 
 **Diagram of Data Pipeline**
 
-![Diagram of data pipeline](./doc/img/data_pipeline.png)
+![Diagram of data pipeline](https://github.com/Dani-2TB/BESS-Docker-Environment/blob/main/doc/img/data_pipeline.png)
 
 This diagram shows how the services in the environment work together to recieve data via the MQTT protocol, transform it to the format needed for time series storage, and then consumed by a dashboard for visualization.
 
