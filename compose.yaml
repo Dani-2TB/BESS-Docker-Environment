@@ -56,6 +56,8 @@ services:
       - '3000:3000'
     volumes:
       - grafana_storage:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ALLOW_EMBEDDING=true
 
   telegraf:
     image: telegraf:latest
@@ -71,7 +73,7 @@ services:
     container_name: nodered
     image: nodered/node-red:latest
     ports:
-     - "1880:1880"
+      - "1880:1880"
     volumes:
       - ./node-red-data:/data
       
