@@ -3,9 +3,9 @@ services:
     container_name: mosquitto
     image: eclipse-mosquitto:latest
     restart: always
-    ports: 
-      - 1883:1883
-      - 9001:9001
+    ports:
+      - "1883:1883"
+      - "9001:9001"
     volumes:
       - ./mosquitto/config:/mosquitto/config
       - ./mosquitto/data:/mosquitto/data
@@ -14,8 +14,11 @@ services:
   influxdb3-core:
     container_name: influxdb3-core
     image: influxdb:3-core
+    restart: always
     ports:
-      - 8181:8181
+      - "8181:8181"
+    environment:
+      - INFLUXD_storage_wal_fsync_delay=0s
     command:
       - influxdb3
       - serve
@@ -24,40 +27,49 @@ services:
       - --data-dir=/var/lib/influxdb3/data
       - --plugin-dir=/var/lib/influxdb3/plugins
     volumes:
-      - type: bind
-        source: .influxdb3/data
-        target: /var/lib/influxdb3/data
-      - type: bind
-        source: .influxdb3/plugins
-        target: /var/lib/influxdb3/plugins
+      - ./.influxdb3/data:/var/lib/influxdb3/data
+      - ./.influxdb3/plugins:/var/lib/influxdb3/plugins
     depends_on: [mosquitto]
-    restart: always
 
   influxdb3-explorer:
     container_name: influxdb3-explorer
     image: influxdata/influxdb3-ui:1.2.0
+    restart: always
     command: ["--mode=admin"]
     ports:
-      - 8888:80
+      - "8888:80"
     volumes:
       - ./influxdb3-explorer/db:/db/:rw
       - ./influxdb3-explorer/config:/app-root/config:ro
       - ./influxdb3-explorer/ssl:/etc/nginx/ssl:ro
     depends_on: [influxdb3-core]
-    restart: always 
     env_file:
       - .env
 
   grafana:
-    image: grafana/grafana-enterprise
+    image: grafana/grafana-enterprise:latest
     container_name: grafana
-    restart: always 
+    restart: always
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
+      # 1. Datos persistentes (sesiones, usuarios)
       - grafana_storage:/var/lib/grafana
+      
+      # 2. Provisioning de Datasources (Generado por setup.sh)
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      
+      # 3. Provisioning de Dashboards (Generado por setup.sh)
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      
+      # 4. Tu código fuente de Dashboards (Tu JSON)
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
     environment:
       - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_AUTH_ANONYMOUS_ORG_NAME=BESS Operator
+    depends_on: [influxdb3-core]
 
   telegraf:
     image: telegraf:latest
@@ -68,14 +80,15 @@ services:
       - .env
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
-  
+
   nodered:
     container_name: nodered
     image: nodered/node-red:latest
+    restart: always
     ports:
       - "1880:1880"
     volumes:
       - ./node-red-data:/data
-      
+
 volumes:
   grafana_storage: {}

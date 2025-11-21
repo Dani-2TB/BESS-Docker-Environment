@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB_BESS
+    type: influxdb
+    uid: bess-influx-01
+    access: proxy
+    url: http://influxdb3-core:8181
+    database: iot-lab
+    isDefault: true
+    jsonData:
+      httpMode: GET
+      httpHeaderName1: "Authorization"
+    secureJsonData:
+      httpHeaderValue1: "Token apiv3_ClTeekBJdFfMfokX5Gx0voo_uP4NrmLCP6fuvcVtXR9twRmhQpCfdzN1rsZzHZs-09H58adPoA1QSxmgQl-55A"
