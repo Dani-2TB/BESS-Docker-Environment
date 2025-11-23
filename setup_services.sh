@@ -21,7 +21,6 @@ mkdir -p influxdb3-explorer/ssl
 
 mkdir -p grafana/provisioning/datasources
 mkdir -p grafana/provisioning/dashboards
-# Aseguramos que existe la carpeta de dashboards
 mkdir -p grafana/dashboards
 
 # --- Environment Init ---
@@ -34,7 +33,6 @@ echo "Starting InfluxDB Core..."
 docker compose up -d influxdb3-core
 
 # Function: wait_for_influx
-# FIX: Aceptamos 401 como señal de que está vivo (pero protegido)
 wait_for_influx() {
     echo "Waiting for InfluxDB to be ready..."
     while true; do
@@ -68,7 +66,7 @@ docker exec influxdb3-core influxdb3 create database \
 
 # --- Configuration Generation ---
 
-# 1. InfluxDB Explorer Config
+# InfluxDB Explorer Config
 cat > influxdb3-explorer/config/config.json <<EOF
 {
   "DEFAULT_INFLUX_SERVER": "http://influxdb3-core:8181",
@@ -78,7 +76,7 @@ cat > influxdb3-explorer/config/config.json <<EOF
 }
 EOF
 
-# 2. Grafana Datasource (MODO INFLUXQL)
+# Grafana Datasource (MODO INFLUXQL)
 # Usamos customHeaders para pasar el token, ya que el modo InfluxQL nativo usa user/pass
 cat > grafana/provisioning/datasources/datasources.yaml <<EOF
 apiVersion: 1
@@ -98,7 +96,7 @@ datasources:
       httpHeaderValue1: "Token $ADMIN_TOKEN"
 EOF
 
-# 3. Grafana Dashboard Provisioning
+# Grafana Dashboard Provisioning
 cat > grafana/provisioning/dashboards/dashboards.yaml <<EOF
 apiVersion: 1
 
