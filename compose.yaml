@@ -53,22 +53,14 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      # 1. Datos persistentes (sesiones, usuarios)
       - grafana_storage:/var/lib/grafana
-      
-      # 2. Provisioning de Datasources (Generado por setup.sh)
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
-      
-      # 3. Provisioning de Dashboards (Generado por setup.sh)
-      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
-      
-      # 4. Tu código fuente de Dashboards (Tu JSON)
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro 
       - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
     environment:
       - GF_SECURITY_ALLOW_EMBEDDING=true
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-      - GF_AUTH_ANONYMOUS_ORG_NAME=BESS Operator
     depends_on: [influxdb3-core]
 
   telegraf:

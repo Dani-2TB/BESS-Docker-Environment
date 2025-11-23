@@ -19,13 +19,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 0,
+  "id": 1,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -72,13 +72,13 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "alias": "AC Current Input",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -99,7 +99,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_current_in\")  / 1000 FROM \"bess\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "AC Current Input",
           "resultFormat": "time_series",
           "select": [
@@ -125,8 +125,8 @@
           "tags": [
             {
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
+              "operator": "=~",
+              "value": "/^$bess_id$/"
             }
           ]
         },
@@ -134,7 +134,7 @@
           "alias": "AC Current Output",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -181,8 +181,8 @@
           "tags": [
             {
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
+              "operator": "=~",
+              "value": "/^$bess_id$/"
             }
           ]
         }
@@ -193,7 +193,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -240,13 +240,13 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "alias": "current",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -266,7 +266,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"dc_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(previous)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -293,8 +293,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "0"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         },
@@ -302,7 +302,7 @@
           "alias": "voltage",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -323,7 +323,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"dc_voltage\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(previous)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -350,8 +350,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "0"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         }
@@ -390,7 +390,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -438,12 +438,12 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -489,8 +489,8 @@
           "tags": [
             {
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         }
@@ -501,7 +501,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -573,13 +573,13 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "alias": "DC Current",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -626,8 +626,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "0"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         },
@@ -635,7 +635,7 @@
           "alias": "DC Voltage",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -683,8 +683,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "0"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         }
@@ -695,7 +695,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -780,13 +780,13 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "alias": "Current A",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -806,7 +806,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_a_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -833,132 +833,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
-            }
-          ]
-        },
-        {
-          "alias": "Current B",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "pcs",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"ac_b_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ac_b_current"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
-            },
-            {
-              "condition": "AND",
-              "key": "id::tag",
-              "operator": "=",
-              "value": "2"
-            }
-          ]
-        },
-        {
-          "alias": "Current C",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "pcs",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"ac_c_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ac_c_current"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
-            },
-            {
-              "condition": "AND",
-              "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         },
@@ -966,7 +842,7 @@
           "alias": "Voltage A",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -987,7 +863,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_a_voltage\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "D",
           "resultFormat": "time_series",
           "select": [
@@ -1012,15 +888,67 @@
           ],
           "tags": [
             {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
+              "condition": "AND",
+              "key": "id::tag",
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
+            }
+          ]
+        },
+        {
+          "alias": "Current B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bess-influx-01"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
             },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "pcs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"ac_b_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ac_b_current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  " / 1000"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         },
@@ -1028,7 +956,7 @@
           "alias": "Voltage B",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1049,7 +977,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_b_voltage\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "E",
           "resultFormat": "time_series",
           "select": [
@@ -1074,15 +1002,67 @@
           ],
           "tags": [
             {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
+              "condition": "AND",
+              "key": "id::tag",
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
+            }
+          ]
+        },
+        {
+          "alias": "Current C",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bess-influx-01"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
             },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "pcs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"ac_c_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ac_c_current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  " / 1000"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         },
@@ -1090,7 +1070,7 @@
           "alias": "Voltage C",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1111,7 +1091,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_c_voltage\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '0') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -1138,8 +1118,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_1$/"
             }
           ]
         }
@@ -1150,7 +1130,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -1197,13 +1177,13 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "alias": "current",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1248,8 +1228,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         },
@@ -1257,7 +1237,7 @@
           "alias": "voltage",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1303,8 +1283,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         }
@@ -1343,7 +1323,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -1391,12 +1371,12 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1443,8 +1423,8 @@
           "tags": [
             {
               "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         }
@@ -1455,7 +1435,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -1527,13 +1507,13 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "alias": "DC Current",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1580,8 +1560,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         },
@@ -1589,7 +1569,7 @@
           "alias": "DC Voltage",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1637,8 +1617,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         }
@@ -1649,7 +1629,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "bf4mea2aagxkwe"
+        "uid": "bess-influx-01"
       },
       "fieldConfig": {
         "defaults": {
@@ -1734,13 +1714,13 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "12.2.1",
+      "pluginVersion": "12.2.0",
       "targets": [
         {
           "alias": "Current A",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1760,7 +1740,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_a_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1787,132 +1767,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "1"
-            }
-          ]
-        },
-        {
-          "alias": "Current B",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "pcs",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"ac_b_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ac_b_current"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
-            },
-            {
-              "condition": "AND",
-              "key": "id::tag",
-              "operator": "=",
-              "value": "2"
-            }
-          ]
-        },
-        {
-          "alias": "Current C",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "hide": false,
-          "measurement": "pcs",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT last(\"ac_c_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "C",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "ac_c_current"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "last"
-              },
-              {
-                "params": [
-                  " / 1000"
-                ],
-                "type": "math"
-              }
-            ]
-          ],
-          "tags": [
-            {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
-            },
-            {
-              "condition": "AND",
-              "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         },
@@ -1920,7 +1776,7 @@
           "alias": "Voltage A",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -1941,7 +1797,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_a_voltage\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "D",
           "resultFormat": "time_series",
           "select": [
@@ -1966,15 +1822,67 @@
           ],
           "tags": [
             {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
+              "condition": "AND",
+              "key": "id::tag",
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
+            }
+          ]
+        },
+        {
+          "alias": "Current B",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bess-influx-01"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
             },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "pcs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"ac_b_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ac_b_current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  " / 1000"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         },
@@ -1982,7 +1890,7 @@
           "alias": "Voltage B",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -2003,7 +1911,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_b_voltage\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "E",
           "resultFormat": "time_series",
           "select": [
@@ -2028,15 +1936,67 @@
           ],
           "tags": [
             {
-              "key": "group_id::tag",
-              "operator": "=",
-              "value": "2"
+              "condition": "AND",
+              "key": "id::tag",
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
+            }
+          ]
+        },
+        {
+          "alias": "Current C",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "bess-influx-01"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
             },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "pcs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"ac_c_current\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ac_c_current"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  " / 1000"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         },
@@ -2044,7 +2004,7 @@
           "alias": "Voltage C",
           "datasource": {
             "type": "influxdb",
-            "uid": "bf4mea2aagxkwe"
+            "uid": "bess-influx-01"
           },
           "groupBy": [
             {
@@ -2065,7 +2025,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT last(\"ac_c_voltage\")  / 1000 FROM \"pcs\" WHERE (\"id\"::tag = '1') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "F",
           "resultFormat": "time_series",
           "select": [
@@ -2092,8 +2052,8 @@
             {
               "condition": "AND",
               "key": "id::tag",
-              "operator": "=",
-              "value": "2"
+              "operator": "=~",
+              "value": "/^$pcs_id_2$/"
             }
           ]
         }
@@ -2110,8 +2070,8 @@
     "list": [
       {
         "current": {
-          "text": "influxdb",
-          "value": "bf4mea2aagxkwe"
+          "text": "InfluxDB_BESS",
+          "value": "bess-influx-01"
         },
         "description": "",
         "label": "Data Source",
@@ -2121,16 +2081,67 @@
         "refresh": 1,
         "regex": "",
         "type": "datasource"
+      },
+      {
+        "current": {
+          "text": "1",
+          "value": "1"
+        },
+        "label": "BESS ID",
+        "name": "bess_id",
+        "options": [
+          {
+            "selected": true,
+            "text": "1",
+            "value": "1"
+          }
+        ],
+        "query": "1",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "0",
+          "value": "0"
+        },
+        "label": "PCS ID 1",
+        "name": "pcs_id_1",
+        "options": [
+          {
+            "selected": true,
+            "text": "0",
+            "value": "0"
+          }
+        ],
+        "query": "0",
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "text": "1",
+          "value": "1"
+        },
+        "label": "PCS ID 2",
+        "name": "pcs_id_2",
+        "options": [
+          {
+            "selected": true,
+            "text": "1",
+            "value": "1"
+          }
+        ],
+        "query": "1",
+        "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "2025-11-19T22:02:34.585Z",
-    "to": "2025-11-19T22:12:34.585Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Bess",
   "uid": "ad5b5lz",
-  "version": 12
+  "version": 3
 }

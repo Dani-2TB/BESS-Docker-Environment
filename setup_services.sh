@@ -113,16 +113,6 @@ providers:
       path: /var/lib/grafana/dashboards
 EOF
 
-# --- AUTO-FIX JSON UID ---
-# Buscamos el JSON en la carpeta y reemplazamos el UID viejo por el nuestro.
-if [ -f grafana/dashboards/bess-overview.json ]; then
-    echo "Patching Dashboard JSON UIDs..."
-    # Reemplazar el UID del datasource viejo (bf4mea2aagxkwe) por el nuestro (bess-influx-01)
-    sed -i 's/bf4mea2aagxkwe/bess-influx-01/g' grafana/dashboards/bess-overview.json
-    # Reemplazar el UID del dashboard mismo para que coincida con tu C#
-    sed -i 's/"uid": "ad5b5lz"/"uid": "bess-admin"/g' grafana/dashboards/bess-overview.json
-fi
-
 # --- Final Startup ---
 echo "Starting remaining services..."
 docker compose up -d

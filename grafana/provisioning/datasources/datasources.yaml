@@ -12,4 +12,4 @@ datasources:
       httpMode: GET
       httpHeaderName1: "Authorization"
     secureJsonData:
-      httpHeaderValue1: "Token apiv3_ClTeekBJdFfMfokX5Gx0voo_uP4NrmLCP6fuvcVtXR9twRmhQpCfdzN1rsZzHZs-09H58adPoA1QSxmgQl-55A"
+      httpHeaderValue1: "Token apiv3_c6ehjXu-2i7JP6fvQk3EXUfWEXsDZP6ON92rgoN-z0BK858VQ6vZjpYvrPjfJ1ruDCZ1pA9lW3ZwKoNIrYQ-dw"
